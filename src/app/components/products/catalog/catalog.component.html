@@ -1,0 +1,71 @@
+<div class="mx-4">
+  <div class="mb-4">
+    <h2>Recherche de produits</h2>
+    <form class="d-flex flex-row justify-content-around">
+      <div class="form-group col-md-3">
+        <label class="px-2 py-2" for="name">Recherche de produit :</label>
+        <input
+          #input
+          type="text"
+          class="form-control mb-3"
+          id="name"
+          placeholder="Recherche..."
+        />
+      </div>
+    </form>
+    <h2>Produits</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Prix</th>
+          <th>Catégorie</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="table table-striped" id="container">
+        <ng-container *ngIf="(searchField$ | async)?.length > 0">
+          <tr *ngFor="let result of searchField$ | async">
+            <td>{{ result.name }}</td>
+            <td>{{ result.description }}</td>
+            <td>{{ result.price | currency : "EUR" }}</td>
+            <td>{{ result.category }}</td>
+            <td>
+              <button
+                (click)="addToCart(result)"
+                type="button"
+                class="btn btn-outline-success btn-sm custom-text-color"
+              >
+                Ajouter au Panier
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            !(searchField$ | async) || (searchField$ | async)?.length === 0
+          "
+        >
+          <ng-container *ngIf="products$ | async as products">
+            <tr *ngFor="let product of products">
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.price | currency : "EUR" }}</td>
+              <td>{{ product.category }}</td>
+              <td>
+                <button
+                  (click)="addToCart(product)"
+                  type="button"
+                  class="btn btn-outline-success btn-sm custom-text-color"
+                >
+                  Ajouter au Panier
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

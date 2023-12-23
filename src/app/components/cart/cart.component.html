@@ -1,0 +1,22 @@
+<div class="mx-5">
+  <h2>Votre panier</h2>
+  <ul>
+    <li *ngFor="let item of cartItems$ | async">
+      {{ item.name }} - {{ item.price | currency : "EUR" }}
+      <button
+        (click)="removeFromCart(item.id)"
+        type="button"
+        class="btn btn-outline-danger btn-sm"
+      >
+        Supprimer du panier
+      </button>
+    </li>
+  </ul>
+  <button
+    (click)="clearCart()"
+    type="button"
+    class="btn btn-outline-danger btn-sm mb-3"
+  >
+    Vider le panier
+  </button>
+</div>

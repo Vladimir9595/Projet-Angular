@@ -1,0 +1,23 @@
+.custom-container {
+  max-width: 1500px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 100px;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.fixed-header {
+  width: 100%;
+  z-index: 1000;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.fixed-footer {
+  width: 100%;
+}

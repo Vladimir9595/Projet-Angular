@@ -1,0 +1,11 @@
+* {
+  background-color: #1f3230;
+  color: #fff;
+  height: 100px;
+  text-align: center;
+}
+
+.text:hover {
+  font-weight: lighter;
+  font-style: italic;
+}

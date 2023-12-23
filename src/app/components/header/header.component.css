@@ -1,0 +1,15 @@
+h1 {
+  background-color: #1f3230;
+  color: #fff;
+  height: 100px;
+  text-align: center;
+}
+
+ul {
+  margin-top: -10px;
+  background-color: #1f32302c;
+}
+
+a {
+  color: #000;
+}
