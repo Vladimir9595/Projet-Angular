@@ -8,21 +8,21 @@ import { ProductService } from '../../services/product.service';
 })
 export class LoginComponent {
   name = 'Angular';
-  username: string = '';
+  login: string = '';
   password: string = '';
 
-  firstName: string = '';
-  lastName: string = '';
+  firstname: string = '';
+  lastname: string = '';
   cnx: boolean = false;
   errorMessage: string = '';
   validMessage: string = '';
 
   constructor(private prodService: ProductService) {}
   connexion() {
-    this.prodService.loginClient(this.username, this.password).subscribe(
+    this.prodService.loginClient(this.login, this.password).subscribe(
       (c) => {
-        this.firstName = c.firstName;
-        this.lastName = c.lastName;
+        this.firstname = c.firstname;
+        this.lastname = c.lastname;
         this.cnx = true;
         this.validMessage = 'Connexion réussie';
         this.errorMessage = '';

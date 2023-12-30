@@ -2,14 +2,14 @@
   <div class="align-center text-center">
     <h2>Login</h2>
     <div class="form-group">
-      <label class="py-2" for="username">Username :</label>
+      <label class="py-2" for="login">Login :</label>
       <input
         type="text"
         class="form-control mb-3"
-        id="username"
-        placeholder="Username"
-        name="username"
-        [(ngModel)]="username"
+        id="login"
+        placeholder="Login"
+        name="login"
+        [(ngModel)]="login"
       />
     </div>
     <div class="form-group">
@@ -37,7 +37,7 @@
     <div class="custom-box" *ngIf="cnx">
       <div>
         <p class="custom-message px-5">
-          Bonjour {{ lastName }} - {{ firstName }}
+          Bonjour {{ lastname }} - {{ firstname }}
         </p>
         <p>
           Rendez-vous dans notre

@@ -1,9 +1,9 @@
 export class Client {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
 
-  constructor(firstName: string, lastName: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor(firstname: string, lastname: string) {
+    this.firstname = firstname;
+    this.lastname = lastname;
   }
 }
