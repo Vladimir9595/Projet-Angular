@@ -12,14 +12,14 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  public loginClient(username: string, password: string): Observable<Client> {
+  public loginClient(login: string, password: string): Observable<Client> {
     let data: String;
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
       }),
     };
-    data = 'username=' + username + '&password=' + password;
+    data = 'login=' + login + '&password=' + password;
     return this.http.post<Client>(this.loginUrl, data, httpOptions);
   }
 
@@ -29,7 +29,7 @@ export class ProductService {
 
   searchCatalog(searchTerm: string): Observable<any> {
     if (searchTerm && searchTerm.trim().length >= 1) {
-      const url = `https://siweb-search.onrender.com/api/catalogue/${searchTerm}`;
+      const url = `http://localhost:8000/api/catalogue/${searchTerm}`;
       return this.http.get(url);
     } else {
       return of([]);
