@@ -14,58 +14,56 @@
       </div>
     </form>
     <h2>Produits</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Description</th>
-          <th>Prix</th>
-          <th>Catégorie</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody class="table table-striped" id="container">
-        <ng-container *ngIf="(searchField$ | async)?.length > 0">
-          <tr *ngFor="let result of searchField$ | async">
-            <td>{{ result.name }}</td>
-            <td>{{ result.description }}</td>
-            <td>{{ result.price | currency : "EUR" }}</td>
-            <td>{{ result.category }}</td>
-            <td>
+    <div class="card-deck">
+      <ng-container *ngIf="(searchField$ | async)?.length > 0">
+        <div class="card" *ngFor="let result of searchField$ | async">
+          <div class="card-body">
+            <h5 class="card-title">{{ result.name }}</h5>
+            <img
+              [src]="result?.imgurl"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <p class="card-text">{{ result.description }}</p>
+            <p class="card-text">{{ result.price | currency : "EUR" }}</p>
+            <p class="card-text">{{ result.category }}</p>
+            <button
+              (click)="addToCart(result)"
+              type="button"
+              class="btn btn-outline-success btn-sm custom-text-color"
+            >
+              Ajouter au Panier
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container
+        *ngIf="!(searchField$ | async) || (searchField$ | async)?.length === 0"
+      >
+        <ng-container *ngIf="products$ | async as products">
+          <div class="card" *ngFor="let product of products">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <img
+                [src]="product?.imgurl"
+                class="card-img-top"
+                alt="Product Image"
+              />
+              <p class="card-text">{{ product.description }}</p>
+              <p class="card-text">{{ product.price | currency : "EUR" }}</p>
+              <p class="card-text">{{ product.category }}</p>
               <button
-                (click)="addToCart(result)"
+                (click)="addToCart(product)"
                 type="button"
                 class="btn btn-outline-success btn-sm custom-text-color"
               >
                 Ajouter au Panier
               </button>
-            </td>
-          </tr>
+            </div>
+          </div>
         </ng-container>
-        <ng-container
-          *ngIf="
-            !(searchField$ | async) || (searchField$ | async)?.length === 0
-          "
-        >
-          <ng-container *ngIf="products$ | async as products">
-            <tr *ngFor="let product of products">
-              <td>{{ product.name }}</td>
-              <td>{{ product.description }}</td>
-              <td>{{ product.price | currency : "EUR" }}</td>
-              <td>{{ product.category }}</td>
-              <td>
-                <button
-                  (click)="addToCart(product)"
-                  type="button"
-                  class="btn btn-outline-success btn-sm custom-text-color"
-                >
-                  Ajouter au Panier
-                </button>
-              </td>
-            </tr>
-          </ng-container>
-        </ng-container>
-      </tbody>
-    </table>
+      </ng-container>
+    </div>
   </div>
 </div>
