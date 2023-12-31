@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
 
@@ -18,6 +18,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CatalogComponent } from './components/products/catalog/catalog.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
+import { CreateComponent } from './components/products/create/create.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { UserComponent } from './components/user/user.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -27,6 +30,9 @@ const appRoutes: Routes = [
   },
   { path: 'panier', component: CartComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'landing', component: LandingComponent },
+  { path: 'create-produit', component: CreateComponent },
+  { path: 'create-utilisateur', component: UserComponent },
 ];
 
 @NgModule({
@@ -38,12 +44,16 @@ const appRoutes: Routes = [
     CartComponent,
     LoginComponent,
     FilterPipe,
+    CreateComponent,
+    LandingComponent,
+    UserComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxsModule.forRoot([CartState]),
     RouterModule.forRoot(appRoutes),
   ],
