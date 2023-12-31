@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class ProductService {
   private productsUrl = environment.backendCatalogue;
+  private createProductUrl = environment.backendCreateProduit;
   private loginUrl = environment.backendLoginClient;
 
   constructor(private http: HttpClient) {}
@@ -21,6 +22,17 @@ export class ProductService {
     };
     data = 'login=' + login + '&password=' + password;
     return this.http.post<Client>(this.loginUrl, data, httpOptions);
+  }
+
+  public createProduct(product: Product): Observable<Product> {
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('imgurl', product.imgurl);
+    formData.append('description', product.description);
+    formData.append('price', product.price.toString());
+    formData.append('category', product.category);
+
+    return this.http.post<Product>(this.createProductUrl, formData);
   }
 
   public getProducts(): Observable<Product[]> {
