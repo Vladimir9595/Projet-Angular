@@ -1,4 +1,4 @@
-<div class="mx-4">
+<div class="container mx-4">
   <div class="mb-4">
     <h2>Recherche de produits</h2>
     <form class="d-flex flex-row justify-content-around">
@@ -14,26 +14,29 @@
       </div>
     </form>
     <h2>Produits</h2>
-    <div class="card-deck">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
       <ng-container *ngIf="(searchField$ | async)?.length > 0">
-        <div class="card" *ngFor="let result of searchField$ | async">
-          <div class="card-body">
-            <h5 class="card-title">{{ result.name }}</h5>
-            <img
-              [src]="result?.imgurl"
-              class="card-img-top"
-              alt="Product Image"
-            />
-            <p class="card-text">{{ result.description }}</p>
-            <p class="card-text">{{ result.price | currency : "EUR" }}</p>
-            <p class="card-text">{{ result.category }}</p>
-            <button
-              (click)="addToCart(result)"
-              type="button"
-              class="btn btn-outline-success btn-sm custom-text-color"
-            >
-              Ajouter au Panier
-            </button>
+        <div class="col mb-3" *ngFor="let result of searchField$ | async">
+          <div class="card">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ result.name }}</h5>
+              <img
+                [src]="result.imgurl"
+                class="card-img-top"
+                alt="Product Image"
+                style="height: 200px; object-fit: contain"
+              />
+              <p class="card-text">{{ result.description }}</p>
+              <p class="card-text">{{ result.price | currency : "EUR" }}</p>
+              <p class="card-text">{{ result.category }}</p>
+              <button
+                (click)="addToCart(result)"
+                type="button"
+                class="mt-auto btn btn-outline-success btn-sm custom-text-color"
+              >
+                Ajouter au Panier
+              </button>
+            </div>
           </div>
         </div>
       </ng-container>
@@ -42,24 +45,36 @@
         *ngIf="!(searchField$ | async) || (searchField$ | async)?.length === 0"
       >
         <ng-container *ngIf="products$ | async as products">
-          <div class="card" *ngFor="let product of products">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <img
-                [src]="product?.imgurl"
-                class="card-img-top"
-                alt="Product Image"
-              />
-              <p class="card-text">{{ product.description }}</p>
-              <p class="card-text">{{ product.price | currency : "EUR" }}</p>
-              <p class="card-text">{{ product.category }}</p>
-              <button
-                (click)="addToCart(product)"
-                type="button"
-                class="btn btn-outline-success btn-sm custom-text-color"
-              >
-                Ajouter au Panier
-              </button>
+          <div class="position-absolute" style="margin-top: -12px">
+            <button
+              routerLink="/create-produit"
+              type="button"
+              class="btn btn-outline-secondary btn-sm position-absolute"
+            >
+              Ajouter un produit
+            </button>
+          </div>
+          <div class="col mb-3" *ngFor="let product of products">
+            <div class="card">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <img
+                  [src]="product.imgurl"
+                  class="card-img-top"
+                  alt="Product Image"
+                  style="height: 200px; object-fit: contain"
+                />
+                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">{{ product.price | currency : "EUR" }}</p>
+                <p class="card-text">{{ product.category }}</p>
+                <button
+                  (click)="addToCart(product)"
+                  type="button"
+                  class="btn btn-outline-success btn-sm custom-text-color"
+                >
+                  Ajouter au Panier
+                </button>
+              </div>
             </div>
           </div>
         </ng-container>
