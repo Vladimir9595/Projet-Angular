@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CartState } from '../../shared/states/cart.state';
-import {
-  RemoveFromCart,
-  ClearCart,
-} from '../../shared/actions/cart.actions';
+import { RemoveFromCart, ClearCart } from '../../shared/actions/cart.actions';
 import { Product } from '../../shared/models/product';
 
 @Component({
@@ -14,6 +11,7 @@ import { Product } from '../../shared/models/product';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
+  message: string = '';
   @Select(CartState.cartItems) cartItems$: Observable<Product[]> | undefined;
 
   constructor(private store: Store) {}
@@ -24,5 +22,6 @@ export class CartComponent {
 
   clearCart() {
     this.store.dispatch(new ClearCart());
+    this.message = 'Payement effectué avec succès';
   }
 }

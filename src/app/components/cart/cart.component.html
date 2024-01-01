@@ -15,8 +15,17 @@
   <button
     (click)="clearCart()"
     type="button"
-    class="btn btn-outline-danger btn-sm mb-3"
+    class="btn btn-outline-success btn-sm mb-3"
   >
-    Vider le panier
+    Payer
   </button>
+  <div
+    *ngIf="message"
+    class="alert"
+    [ngClass]="{
+      'alert-success': message.includes('succès')
+    }"
+  >
+    {{ message }}
+  </div>
 </div>
