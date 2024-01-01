@@ -23,14 +23,14 @@ import { LandingComponent } from './components/landing/landing.component';
 import { UserComponent } from './components/user/user.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   {
     path: 'catalogue',
     component: CatalogComponent,
   },
   { path: 'panier', component: CartComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'landing', component: LandingComponent },
+  { path: 'accueil', component: LandingComponent },
   { path: 'create-produit', component: CreateComponent },
   { path: 'create-utilisateur', component: UserComponent },
 ];
