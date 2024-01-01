@@ -1,1 +1,163 @@
-<p>user works!</p>
+<div class="container mt-5">
+  <h2>Formulaire de création utilisateur</h2>
+  <form [formGroup]="userForm" (ngSubmit)="createUser()">
+    <div class="mb-3">
+      <label for="firstname" class="form-label">Prénom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstname"
+        formControlName="firstname"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastname"
+        formControlName="lastname"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="adress" class="form-label">Adresse</label>
+      <input
+        type="text"
+        class="form-control"
+        id="adress"
+        formControlName="adress"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="postalcode" class="form-label">Code Postal</label>
+      <input
+        type="text"
+        class="form-control"
+        id="postalcode"
+        formControlName="postalcode"
+        pattern="[0-9]{5}"
+        title="Five-digit postal code"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="city" class="form-label">Ville</label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        formControlName="city"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="sex" class="form-label">Sex</label>
+      <div>
+        <input
+          type="radio"
+          id="male"
+          formControlName="sex"
+          value="M"
+          required
+        />
+        <label for="male">M</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="female"
+          formControlName="sex"
+          value="F"
+          required
+        />
+        <label for="female">F</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="login" class="form-label">Login</label>
+      <input
+        type="text"
+        class="form-control"
+        id="login"
+        formControlName="login"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-group">
+        <input
+          type="{{ hidePassword ? 'password' : 'text' }}"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="togglePasswordVisibility()"
+        >
+          {{ hidePassword ? "Show" : "Hide" }}
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phonenumber" class="form-label">Numéro de téléphone</label>
+      <input
+        type="tel"
+        class="form-control"
+        id="phonenumber"
+        formControlName="phonenumber"
+        required
+      />
+    </div>
+
+    <button type="submit" class="my-3 btn btn-outline-secondary btn-sm">
+      Valider
+    </button>
+  </form>
+  <div
+    *ngIf="message"
+    class="alert"
+    [ngClass]="{
+      'alert-success': message.includes('succès'),
+      'alert-danger': message.includes('erreur')
+    }"
+  >
+    {{ message }}
+  </div>
+  <div class="custom-box" *ngIf="create">
+    <div>
+      <p class="custom-message px-5">
+        Bonjour {{ lastname }} - {{ firstname }}
+      </p>
+      <p>
+        Rendez-vous dans notre
+        <a class="custom-link" routerLink="/catalogue">catalogue</a>
+      </p>
+    </div>
+  </div>
+</div>
