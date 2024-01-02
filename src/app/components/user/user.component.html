@@ -139,8 +139,13 @@
       Valider
     </button>
   </form>
+  <div *ngIf="message === 'Veuillez remplir tous les champs correctement.'">
+    <div class="alert alert-warning">
+      {{ message }}
+    </div>
+  </div>
   <div
-    *ngIf="message"
+    *ngIf="message !== 'Veuillez remplir tous les champs correctement.'"
     class="alert"
     [ngClass]="{
       'alert-success': message.includes('succès'),
@@ -151,13 +156,72 @@
   </div>
   <div class="custom-box" *ngIf="create">
     <div>
-      <p class="custom-message px-5">
-        Bonjour {{ lastname }} - {{ firstname }}
-      </p>
+      <p class="custom-message">Bonjour {{ lastname }} - {{ firstname }}</p>
       <p>
         Rendez-vous dans notre
         <a class="custom-link" routerLink="/catalogue">catalogue</a>
       </p>
+    </div>
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      firstnameControl && firstnameControl.hasError('noNumbersOrSpecialChars')
+    "
+  >
+    Le prénom ne peut pas contenir des chiffres ni de caractères spéciaux. Pour
+    les noms composés le - est accepté.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      lastnameControl && lastnameControl.hasError('noNumbersOrSpecialChars')
+    "
+  >
+    Le nom de famille ne peut pas contenir des chiffres ni de caractères
+    spéciaux. Pour les noms composés le - est accepté.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      addressControl && addressControl.hasError('invalidCharactersAddress')
+    "
+  >
+    Le champ adresse peut contenir uniquement des lettres et chiffres.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="cityControl && cityControl.hasError('noNumbersOrSpecialChars')"
+  >
+    Le champ ville peut contenir uniquement des lettres.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="postalcodeControl && postalcodeControl.hasError('pattern')"
+  >
+    Le code postal doit contenir exactement 5 chiffres.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="emailControl && emailControl.hasError('email')"
+  >
+    L'e-mail doit obligatoirement contenir le @ et un point .
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="loginControl && loginControl.hasError('invalidCharactersLogin')"
+  >
+    Le login peut contenir uniquement des lettres, chiffres et underscores (_).
+  </div>
+  <div *ngIf="message !== 'Utilisateur ajouté avec succès'">
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        phonenumberControl &&
+        phonenumberControl.hasError('invalidCharactersPhone')
+      "
+    >
+      Le numéro de téléphone peut contenir uniquement des chiffres.
     </div>
   </div>
 </div>
