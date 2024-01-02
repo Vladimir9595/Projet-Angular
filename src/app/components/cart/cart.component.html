@@ -12,6 +12,7 @@
       </button>
     </li>
   </ul>
+  <div>Total: {{ cartTotal | currency : "EUR" }}</div>
   <button
     (click)="clearCart()"
     type="button"
