@@ -36,6 +36,8 @@ export class CreateComponent {
           this.message = "Erreur lors de l'ajout du produit";
         }
       );
+    } else {
+      this.message = 'Veuillez remplir tous les champs correctement.';
     }
   }
 }

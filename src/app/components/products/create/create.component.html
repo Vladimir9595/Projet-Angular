@@ -64,8 +64,13 @@
       Ajouter produit
     </button>
   </form>
+  <div *ngIf="message === 'Veuillez remplir tous les champs correctement.'">
+    <div class="alert alert-warning">
+      {{ message }}
+    </div>
+  </div>
   <div
-    *ngIf="message"
+    *ngIf="message !== 'Veuillez remplir tous les champs correctement.'"
     class="alert"
     [ngClass]="{
       'alert-success': message.includes('succès'),
