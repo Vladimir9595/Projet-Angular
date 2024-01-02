@@ -1,0 +1,22 @@
+.custom-box {
+  margin-bottom: 15px;
+  padding: 10px;
+  padding-bottom: 3px;
+  border: 2px solid #14b6a1; /* Couleur verte pour la bordure */
+  border-radius: 8px; /* Coins arrondis */
+  background-color: #f1f1f1; /* Couleur de fond */
+}
+
+.custom-message {
+  font-size: 1.2rem;
+  color: #333; /* Couleur du texte */
+}
+
+.custom-link {
+  text-decoration: none;
+  color: #007bff; /* Couleur bleue pour le lien */
+}
+
+.custom-link:hover {
+  color: #0059b8;
+}
