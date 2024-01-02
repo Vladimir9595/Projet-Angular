@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +17,9 @@ export class LoginComponent {
   errorMessage: string = '';
   validMessage: string = '';
 
-  constructor(private prodService: ProductService) {}
+  constructor(private clientService: ClientService) {}
   connexion() {
-    this.prodService.loginClient(this.login, this.password).subscribe(
+    this.clientService.loginClient(this.login, this.password).subscribe(
       (c) => {
         this.firstname = c.firstname;
         this.lastname = c.lastname;
