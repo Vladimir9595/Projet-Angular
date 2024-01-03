@@ -25,13 +25,13 @@ export class CartState {
 
   @Selector()
   static cartItemCount(state: CartStateModel) {
-    return state.items.length;
+    return state.items.reduce((count, item) => count + item.quantity, 0);
   }
 
   @Selector()
   static cartTotal(state: CartStateModel) {
     return state.items.reduce(
-      (total, item) => total + parseFloat(item.price),
+      (total, item) => total + item.quantity * parseFloat(item.price),
       0
     );
   }
@@ -39,9 +39,25 @@ export class CartState {
   @Action(AddToCart)
   addToCart(ctx: StateContext<CartStateModel>, action: AddToCart) {
     const state = ctx.getState();
-    ctx.patchState({
-      items: [...state.items, action.payload],
-    });
+    const existingItem = state.items.find(
+      (item) => item.id === action.payload.id
+    );
+
+    if (existingItem) {
+      const updatedItems = state.items.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+
+      ctx.patchState({
+        items: updatedItems,
+      });
+    } else {
+      ctx.patchState({
+        items: [...state.items, { ...action.payload, quantity: 1 }],
+      });
+    }
 
     const newTotal = CartState.cartTotal(state);
     this.cartTotalSubject.next(newTotal);
@@ -50,12 +66,32 @@ export class CartState {
   @Action(RemoveFromCart)
   removeFromCart(ctx: StateContext<CartStateModel>, action: RemoveFromCart) {
     const state = ctx.getState();
-    const updatedItems = state.items.filter(
-      (item) => item.id !== action.payload
-    );
-    ctx.patchState({
-      items: updatedItems,
-    });
+    const itemToRemove = state.items.find((item) => item.id === action.payload);
+
+    if (itemToRemove) {
+      if (itemToRemove.quantity > 1) {
+        const updatedItems = state.items.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+
+        ctx.patchState({
+          items: updatedItems,
+        });
+      } else {
+        const updatedItems = state.items.filter(
+          (item) => item.id !== action.payload
+        );
+
+        ctx.patchState({
+          items: updatedItems,
+        });
+      }
+
+      const newTotal = CartState.cartTotal({ items: state.items });
+      this.cartTotalSubject.next(newTotal);
+    }
   }
 
   @Action(ClearCart)
