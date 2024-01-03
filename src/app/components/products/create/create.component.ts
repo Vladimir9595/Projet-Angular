@@ -24,7 +24,10 @@ export class CreateComponent {
 
   createProduct(): void {
     if (this.productForm.valid) {
-      const product: Product = this.productForm.value;
+      const productData = this.productForm.value;
+      productData.price = parseFloat(productData.price);
+
+      const product: Product = productData;
       this.productService.createProduct(product).subscribe(
         (data) => {
           console.log('Produit ajouté avec succès', data);

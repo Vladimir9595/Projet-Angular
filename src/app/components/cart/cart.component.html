@@ -12,14 +12,18 @@
       </button>
     </li>
   </ul>
-  <div>Total: {{ cartTotal | currency : "EUR" }}</div>
-  <button
-    (click)="clearCart()"
-    type="button"
-    class="btn btn-outline-success btn-sm mb-3"
-  >
-    Payer
-  </button>
+  <div class="total-container mt-3 p-3 bg-light">
+    <p class="text-uppercase fs-5 mb-3 fw-bold">
+      Total: {{ cartTotal | currency : "EUR" }}
+    </p>
+    <button
+      (click)="clearCart()"
+      type="button"
+      class="btn btn-outline-success btn-sm"
+    >
+      Payer
+    </button>
+  </div>
   <div
     *ngIf="message"
     class="alert"

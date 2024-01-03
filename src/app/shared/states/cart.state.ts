@@ -30,7 +30,10 @@ export class CartState {
 
   @Selector()
   static cartTotal(state: CartStateModel) {
-    return state.items.reduce((total, item) => total + item.price, 0);
+    return state.items.reduce(
+      (total, item) => total + parseFloat(item.price),
+      0
+    );
   }
 
   @Action(AddToCart)
