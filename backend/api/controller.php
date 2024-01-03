@@ -184,10 +184,10 @@ function createProduct(Request $request, Response $response, $args)
     // Utilisation de filtres pour nettoyer les données
     if (!preg_match("/^[a-zA-ZÀ-ÖØ-öø-ÿ '-âêîôûäëïöüàæçéèœùÂÊÎÔÛÄËÏÖÜÀÆÇÉÈŒÙ]{1,50}$/u", $name)) {
         $err = true;
-    }
+    } 
     if (!preg_match("/^[a-zA-ZÀ-ÖØ-öø-ÿ '-âêîôûäëïöüàæçéèœùÂÊÎÔÛÄËÏÖÜÀÆÇÉÈŒÙ]{1,150}$/u", $description)) {
         $err = true;
-    }
+    } 
     if (!preg_match("/^[a-zA-Z0-9.,]{1,20}$/", $price)) {
         $err = true;
     }
@@ -242,7 +242,7 @@ function createUtilisateur(Request $request, Response $response)
     // Utilisation de filtres pour nettoyer les données
     if (!preg_match("/^[a-zA-ZÀ-ÖØ-öø-ÿ '-âêîôûäëïöüàæçéèœùÂÊÎÔÛÄËÏÖÜÀÆÇÉÈŒÙ]{1,50}$/u", $lastname)) {
         $err = true;
-    }
+    } 
     if (!preg_match("/^[a-zA-ZÀ-ÖØ-öø-ÿ '-âêîôûäëïöüàæçéèœùÂÊÎÔÛÄËÏÖÜÀÆÇÉÈŒÙ]{1,50}$/u", $firstname)) {
         $err = true;
     }
