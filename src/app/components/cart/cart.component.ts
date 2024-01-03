@@ -20,7 +20,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.cartTotal$?.subscribe((total) => {
-      console.log('Nouveau total du panier :', total);
       this.cartTotal = total;
     });
   }
