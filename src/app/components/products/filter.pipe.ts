@@ -8,7 +8,7 @@ export class FilterPipe implements PipeTransform {
     items: Array<Product>,
     searchOnName: string,
     searchOnCategory: string,
-    searchOnPrice: number
+    searchOnPrice: string
   ): Array<Product> {
     if (!items) return [];
 
@@ -18,7 +18,8 @@ export class FilterPipe implements PipeTransform {
           searchOnName === '') &&
         (item.category.toLowerCase().includes(searchOnCategory.toLowerCase()) ||
           searchOnCategory === '') &&
-        (item.price <= searchOnPrice || searchOnPrice === 0)
+        (item.price.toLowerCase().includes(searchOnPrice.toLowerCase()) ||
+          searchOnPrice === '')
     );
   }
 }

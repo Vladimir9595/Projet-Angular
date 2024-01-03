@@ -3,7 +3,7 @@ export class Product {
   name: string;
   imgurl: string;
   description: string;
-  price: number;
+  price: string;
   category: string;
 
   constructor() {
@@ -11,7 +11,7 @@ export class Product {
     this.name = '';
     this.imgurl = '';
     this.description = '';
-    this.price = 0;
+    this.price = '';
     this.category = '';
   }
 }
