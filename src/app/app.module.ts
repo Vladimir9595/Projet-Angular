@@ -17,10 +17,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CatalogComponent } from './components/products/catalog/catalog.component';
 import { CartComponent } from './components/cart/cart.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/users/login/login.component';
 import { CreateComponent } from './components/products/create/create.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { UserComponent } from './components/user/user.component';
+import { UserComponent } from './components/users/create/create.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },

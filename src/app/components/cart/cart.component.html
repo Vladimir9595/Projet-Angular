@@ -2,7 +2,8 @@
   <h2>Votre panier</h2>
   <ul>
     <li *ngFor="let item of cartItems$ | async">
-      {{ item.name }} ({{ item.quantity }}) - {{ item.price | currency : "EUR" }}
+      {{ item.name }} ({{ item.quantity }}) -
+      {{ item.price | currency : "EUR" }}
       <button
         (click)="removeFromCart(item.id)"
         type="button"
@@ -12,8 +13,8 @@
       </button>
     </li>
   </ul>
-  <div class="total-container mt-3 p-3 bg-light">
-    <p class="text-uppercase fs-5 mb-3 fw-bold">
+  <div class="total-container my-3 p-3 bg-light">
+    <p class="text-uppercase fs-5 mb-3 fw-bold text">
       Total: {{ cartTotal$ | async | currency : "EUR" }}
     </p>
     <button

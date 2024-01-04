@@ -5,13 +5,13 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { ClientService } from '../../services/client.service';
-import { Client } from '../../shared/models/client';
+import { ClientService } from '../../../services/client.service';
+import { Client } from '../../../shared/models/client';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css'],
 })
 export class UserComponent {
   userForm: FormGroup;

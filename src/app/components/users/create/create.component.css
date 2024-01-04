@@ -1,0 +1,22 @@
+.custom-box {
+  margin-bottom: 15px;
+  padding: 10px;
+  padding-bottom: 3px;
+  border: 2px solid #3d7ab3a4;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+}
+
+.custom-message {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.custom-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.custom-link:hover {
+  color: #0059b8;
+}
