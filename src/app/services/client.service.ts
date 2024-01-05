@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { Client } from '../shared/models/client';
 import { environment } from '../environments/environment';
+import { Store } from '@ngxs/store';
+import { ClearCart } from '../shared/actions/cart.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,7 @@ export class ClientService {
 
   private cnxSubject = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store) {}
 
   public loginClient(login: string, password: string): Observable<Client> {
     let data: String;
@@ -46,6 +48,7 @@ export class ClientService {
   public logoutClient(): Observable<any> {
     this.cnx = false;
     this.cnxSubject.next(false);
+    this.store.dispatch(new ClearCart());
     return of({});
   }
 
@@ -65,5 +68,10 @@ export class ClientService {
 
   public getCnxObservable(): Observable<boolean> {
     return this.cnxSubject.asObservable();
+  }
+
+  public clearCartOnLogout(): void {
+    // Vous pouvez ajouter des opérations pour vider le panier ici
+    // Par exemple, si le panier est stocké dans un service, vous pouvez appeler une méthode pour le vider.
   }
 }

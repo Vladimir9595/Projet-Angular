@@ -30,7 +30,7 @@ const appRoutes: Routes = [
     component: CatalogComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'panier', component: CartComponent },
+  { path: 'panier', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: LandingComponent },
   { path: 'create-produit', component: CreateComponent },
