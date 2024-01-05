@@ -21,12 +21,14 @@ import { LoginComponent } from './components/users/login/login.component';
 import { CreateComponent } from './components/products/create/create.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { UserComponent } from './components/users/create/create.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   {
     path: 'catalogue',
     component: CatalogComponent,
+    canActivate: [AuthGuard],
   },
   { path: 'panier', component: CartComponent },
   { path: 'login', component: LoginComponent },
