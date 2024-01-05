@@ -11,6 +11,9 @@
       >Panier ({{ cartItemCount$ | async }})</a
     >
   </li>
+  <li class="nav-item" *ngIf="isClientLoggedIn">
+    <a class="nav-link active fs-5" (click)="logout()">Logout</a>
+  </li>
 </ul>
 <main>
   <router-outlet></router-outlet>

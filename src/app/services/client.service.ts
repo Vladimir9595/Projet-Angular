@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Client } from '../shared/models/client';
 import { environment } from '../environments/environment';
 
@@ -10,6 +10,9 @@ import { environment } from '../environments/environment';
 export class ClientService {
   private createUserUrl = environment.backendCreateUser;
   private loginUrl = environment.backendLoginClient;
+  private cnx: boolean = false;
+
+  private cnxSubject = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -38,5 +41,29 @@ export class ClientService {
     formData.append('phonenumber', client.phonenumber.toString());
 
     return this.http.post<Client>(this.createUserUrl, formData);
+  }
+
+  public logoutClient(): Observable<any> {
+    this.cnx = false;
+    this.cnxSubject.next(false);
+    return of({});
+  }
+
+  public setClientLoggedIn(): void {
+    this.cnx = true;
+    this.cnxSubject.next(true);
+  }
+
+  public setClientLoggedOut(): void {
+    this.cnx = false;
+    this.cnxSubject.next(false);
+  }
+
+  public isClientLoggedIn(): boolean {
+    return this.cnx;
+  }
+
+  public getCnxObservable(): Observable<boolean> {
+    return this.cnxSubject.asObservable();
   }
 }

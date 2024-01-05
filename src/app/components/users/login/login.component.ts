@@ -23,6 +23,7 @@ export class LoginComponent {
       (c) => {
         this.firstname = c.firstname;
         this.lastname = c.lastname;
+        this.clientService.setClientLoggedIn();
         this.cnx = true;
         this.validMessage = 'Connexion réussie';
         this.errorMessage = '';
