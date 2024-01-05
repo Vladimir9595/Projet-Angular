@@ -17,13 +17,20 @@
     <p class="text-uppercase fs-5 mb-3 fw-bold text">
       Total: {{ cartTotal$ | async | currency : "EUR" }}
     </p>
-    <button
-      (click)="clearCart()"
-      type="button"
-      class="btn btn-outline-success btn-sm"
-    >
-      Payer
-    </button>
+    <ng-container *ngIf="cartItems$ | async as cartItems">
+      <ng-container *ngIf="cartItems.length > 0; else emptyCart">
+        <button
+          (click)="clearCart()"
+          type="button"
+          class="btn btn-outline-success btn-sm"
+        >
+          Payer
+        </button>
+      </ng-container>
+    </ng-container>
+    <ng-template #emptyCart>
+      <p class="text">Votre panier est vide.</p>
+    </ng-template>
   </div>
   <div
     *ngIf="message"
