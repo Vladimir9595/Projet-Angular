@@ -53,6 +53,7 @@ export class UserComponent {
           console.log('Utilisateur ajouté avec succès', data);
           this.userForm.reset();
           this.create = true;
+          this.clientService.setClientLoggedIn();
           this.message = 'Utilisateur ajouté avec succès';
           this.firstname = data.firstname;
           this.lastname = data.lastname;
