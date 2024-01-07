@@ -69,9 +69,4 @@ export class ClientService {
   public getCnxObservable(): Observable<boolean> {
     return this.cnxSubject.asObservable();
   }
-
-  public clearCartOnLogout(): void {
-    // Vous pouvez ajouter des opérations pour vider le panier ici
-    // Par exemple, si le panier est stocké dans un service, vous pouvez appeler une méthode pour le vider.
-  }
 }
