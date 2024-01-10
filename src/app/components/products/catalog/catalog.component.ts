@@ -27,7 +27,6 @@ import { AddToCart } from '../../../shared/actions/cart.actions';
 })
 export class CatalogComponent implements OnInit {
   products$: Observable<Product[]>;
-  //   model?: Observable<any>;
   searchField$?: Observable<any>;
   @ViewChild('input', { static: true }) input!: ElementRef;
   @Output() searchEvent = new EventEmitter<string>();
