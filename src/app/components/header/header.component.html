@@ -1,10 +1,7 @@
 <h1 class="pt-4">Votre site E-Commerce de confiance</h1>
 <ul class="nav justify-content-end mb-5">
   <li class="nav-item">
-    <a
-      class="nav-link active fs-5"
-      routerLink="/accueil"
-      *ngIf="!isClientLoggedIn"
+    <a class="nav-link active fs-5" routerLink="/accueil" *ngIf="!cnx"
       >Accueil</a
     >
   </li>
@@ -16,7 +13,7 @@
       >Panier ({{ cartItemCount$ | async }})</a
     >
   </li>
-  <li class="nav-item" *ngIf="isClientLoggedIn">
+  <li class="nav-item" *ngIf="cnx">
     <a class="nav-link active fs-5" (click)="logout()">Logout</a>
   </li>
 </ul>

@@ -30,9 +30,9 @@ export class HeaderComponent {
     this.cnxSubscription.unsubscribe();
   }
 
-  get isClientLoggedIn(): boolean {
-    return this.clientService.isClientLoggedIn();
-  }
+  //   get isClientLoggedIn(): boolean {
+  //     return this.clientService.isClientLoggedIn();
+  //   }
 
   logout() {
     this.clientService.logoutClient();
